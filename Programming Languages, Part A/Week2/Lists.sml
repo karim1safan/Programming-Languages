@@ -8,10 +8,10 @@ val c = [[3,4], [5,6,7]];
 
 val d = [true, false, true];
 
-(* values in the list must has the same type *)
-(* val e = [true , false , 1 , 2 , 3]; *)
+(* values in the list must have the same type *)
+(* val e = [true, false, 1, 2, 3]; *)
 
-(* we can use expression indise the list *)
+(* we can use expression inside the list *)
 val f = [(1+2), 6 div 3, 4 mod 2, 5 , 6];
 
 val g = [100,200,300];
@@ -21,10 +21,10 @@ val h = 400::g;
 
 val i = 500::600::g;
 
-(* nested list must all element in nested list too *)
+(* nested list must all elements in the nested list too *)
 (* val j = [1,2, [3,4]]; *)
 
-(* if we want to know if the list is empty or no -> null 
+(* if we want to know if the list is empty or not -> null 
    return true if the list is empty other false *)
 val k = null [];
 val l = null [1,2,3,4,5];
@@ -46,7 +46,7 @@ val aa = tl [9];
 (* give true because the list is empty *)
 val bb = null ( tl (tl (tl f)) );
 
-(* we can make list of pair *)
+(* we can make a list of pairs *)
 val cc = [(1,2), (3,4)];
 
 val xx = (5,6)::cc;
@@ -85,6 +85,14 @@ fun sum_pair_list(xs : (int * int) list) =
 val sum_two_pairs = sum_pair_list[(3,4),(5,6)];
 
 (* sum_pair_list [(3,4),(5,6)] *)
+
+
+fun produce_pair_list (x : (int * int) list) =  (* [(1,2),(3,4)] -> 1*2*3*4 = 24 *)
+    if null x
+    then 1
+    else #1 (hd x) * #2 (hd x) * produce_pair_list(tl x)
+    
+val bb = produce_pair_list[(1,2),(3,4)];
 
 fun first_element(xs : (int * int) list) =        (* [(3,4),(5,6) -> [3,5] *)
     if null xs then [] else (#1 (hd xs)) :: first_element(tl xs); 
